@@ -6,7 +6,7 @@ import subprocess
 import shlex
 import time
 import signal
-debug = __debug__
+debug = False
 WINDOWS = False
 ON_POSIX = 'posix' in sys.builtin_module_names
 
