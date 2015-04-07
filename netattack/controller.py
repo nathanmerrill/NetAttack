@@ -3,7 +3,7 @@ import Communicator
 import math
 
 NODES_PER_BOT = 20
-NUM_TURNS = 2000
+NUM_TURNS = 100
 NUM_GAMES = 100
 
 class Node:
@@ -40,7 +40,8 @@ if __name__ == "__main__":
         nodes = map(Node, names*NODES_PER_BOT)
         active_nodes = list(nodes)
         random.shuffle(active_nodes)
-        for _ in xrange(NUM_TURNS):
+        for turn in xrange(NUM_TURNS):
+            print "Turn:"+str(turn)
             strength = [node.strength for node in active_nodes]
             for communicator in active_communicators:
                 friendly = ["F" if node.owner == communicator.name else "E"
@@ -73,5 +74,5 @@ if __name__ == "__main__":
                 points[node.owner] = points.get(node.owner, 0) + 1
     points = list(points.items())
     points.sort(key=lambda tup: tup[1])
-    for name, point in points:
+    for name, point in reversed(points):
         print name+" got "+str(point)+" points"
